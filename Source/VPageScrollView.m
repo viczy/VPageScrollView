@@ -87,7 +87,9 @@ static NSInteger const tagOffset = 100;
     self.pagingEnabled = YES;
 
     self.pages = [self.dataSource numberOfPagesFromVPageScrollView];
-
+    for (UIView *subView in self.subviews) {
+        [subView removeFromSuperview];
+    }
     if (self.scroolLoop) {
         [self addSubviewAtIndex:-1];
         [self addSubviewAtIndex:0];
@@ -103,6 +105,7 @@ static NSInteger const tagOffset = 100;
 #pragma mark - Actions Public
 
 - (void)reload {
+    self.pages = [self.dataSource numberOfPagesFromVPageScrollView];
     [self reloadPageAtIndex:self.currentIndex];
 }
 
